@@ -9,8 +9,8 @@ import Herramientas from './IconosCamara';
 import Resultados from './Resultados';
 
 const endpoint = 'https://vision.googleapis.com/v1/images:annotate?key=';
-const apiKey='AIzaSyBZk1Vsxcr-rfBSbPlxD13uuoZpAbzBY-c';
-
+const apiKey=''; /*put your API key here*/
+ 
 export default class Camara extends Component {
     camera = null;
 
