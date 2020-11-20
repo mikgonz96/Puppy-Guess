@@ -9,8 +9,8 @@ import Herramientas from './IconosCamara';
 import Resultados from './Resultados';
 
 const endpoint = 'https://vision.googleapis.com/v1/images:annotate?key=';
-const apiKey=''; /*put your API key here*/
- 
+const apiKey='';/*put your API key here*/
+
 export default class Camara extends Component {
     camera = null;
 
@@ -87,7 +87,7 @@ export default class Camara extends Component {
 
     render() {
 
-        const { hasCameraPermission, flashMode, resultados } = this.state;
+        const { hasCameraPermission, flashMode, resultados, loading, resultOk, imagen } = this.state;
         
         if (hasCameraPermission === null) {
             return <Text>...</Text> ;
@@ -98,7 +98,7 @@ export default class Camara extends Component {
         return (
             <React.Fragment>
                 
-            {!this.state.loading && !this.state.resultOk && 
+            {!loading && !resultOk && 
                 <React.Fragment>
                     <View>
                         <Camera
@@ -118,13 +118,13 @@ export default class Camara extends Component {
                 }
                 
 
-                {this.state.loading &&
+                {loading &&
                     <View style={styles.SpinnerStyle}>
                         <ActivityIndicator size='large' />
                         <Text style={{ color: 'black', fontSize: 18, fontWeight: 'bold' }}>Cargando...</Text>
                     </View>}
 
-                {!this.state.loading && this.state.resultOk && 
+                {!loading && resultOk && 
                     <ScrollView style={styles.backColor}>
                         <Title syle={styles.resText}>
                         Estos son los resultados que pudimos 
@@ -132,7 +132,7 @@ export default class Camara extends Component {
                         <Title syle={styles.resText}>
                         encontrar sobre tu foto ♥
                         </Title>
-                        <Image source={this.state.imagen} style={styles.showImage} />   
+                        <Image source={imagen} style={styles.showImage} />   
                         <Resultados resultados={resultados} />
 
                     </ScrollView>
